@@ -1,0 +1,62 @@
+
+
+
+ category  116918588
+ publication  116893925
+ your name  117420774
+ your email  117420777
+ division  116893929
+ publication region  117386486
+ publication market  117386488
+ publication state  117386483
+ title of workproject  117420781
+ how many key contributors were involved with this project  117570991
+ first contributor  117571185
+ first contributor email  117739364
+ first contributor phone number  117739373
+ first contributor headshot  117691001
+ second contributor  117571198
+ second contributor email  117739377
+ second contributor phone number  117739380
+ second contributor headshot   117691038
+ third contributor  117571236
+ third contributor email   117739395
+ third contributor phone number  117739398
+ third contributor headshot  117691047
+ fourth contributor  117571242
+ fourth contributor email   117739451
+ fourth contributor headshot  117691088
+ fifth contributor  117631198
+ fourth contributor phone number  117739452
+ fifth contributor headshot  117691099
+ fifth contributor email   117739458
+ fifth contributor phone number  117739463
+ brief description of workproject and how it aligns with the category  117420893
+ enter at least one url associated with the work  117421689
+ additional url 1  117691133
+ additional url 2  117691132
+ additional url 3  117691131
+ additional url 4  117691130
+ supplemental url 1  117631315
+ supplemental url 2  117691704
+ supplemental url 3  117691692
+ supplemental url 4  117691691
+ supplemental url 5  117691660
+ other publicationsteams that contributed to the work  117420882
+ additional material to upload 1  117421706
+ additional material to upload 2  117695257
+ additional material to upload 3  117695254
+ editor name and title  117631778
+ brief description of why this editor deserves this recognition  117632784
+ please upload a headshot of this editor  117420818
+ enter urls associated directly with this editor optional  117632879
+ any additional material 1 eoy  117632935
+ any additional material 2 eoy  117695260
+ any additional material 3 eoy  117695259
+ nominee name and title  117632952
+ brief description of why this individual deserves this recognition  117632953
+ please upload a headshot of this individual  117632954
+ enter urls associated directly with this individual optional  117632955
+ any additional material 1 indv  117632956
+ any additional material 2 indv  117695269
+ any additional material 3 indv  117695268

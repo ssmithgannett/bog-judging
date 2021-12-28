@@ -1,0 +1,146 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+   
+</head>
+    <body>
+        
+        <div id="filters">
+
+            <form id="finalist">
+                <p>Finalists</p>
+                <input type="radio" name="finalist-filter" id="View All" value="View All" checked>
+                <label for="View All">View All</label>
+                <input type="radio" name="finalist-filter" id="isFinalist" value="isFinalist">
+                <label for="isFinalist">Finalists</label>
+                <input type="radio" name="finalist-filter" id="nonFinalist" value="nonFinalist">
+                <label for="nonFinalist">Non-finalists</label>
+            </form>
+
+            <form id="divisions">
+                <p>Division:</p>
+                <input type="radio" name="division" id="View All Divs" value="View All" checked>
+                <label for="I">View All</label>
+                <input type="radio" name="division" id="I" value="I">
+                <label for="I">I</label>
+                <input type="radio" name="division" id="II" value="II">
+                <label for="II">II</label>
+                <input type="radio" name="division" id="III" value="III">
+                <label for="III">III</label>
+                <input type="radio" name="division" id="IV" value="IV">
+                <label for="IV">IV</label>
+            </form>
+
+            <form id="categories">
+                <p>Category:</p>
+
+                <input type="radio" name="category" id="View All Cats" value="View All" checked>
+                <label for="View All">View All</label>
+
+                <input type="radio" name="category" id="Public Service" value="Public Service">
+                <label for="Public Service">Public Service</label>
+                
+                <input type="radio" name="category" id="Investigative Reporting" value="Investigative Reporting">
+                <label for="Investigative Reporting">Investigative Reporting</label>
+                
+                <input type="radio" name="category" id="Enterprise Reporting" value="Enterprise Reporting">
+                <label for="Enterprise Reporting">Enterprise Reporting</label>
+                
+                <input type="radio" name="category" id="Local Reporting" value="Local Reporting">
+                <label for="Local Reporting">Local Reporting</label>
+                
+                <input type="radio" name="category" id="Breaking News" value="Breaking News">
+                <label for="Breaking News">Breaking News</label>
+                
+                <input type="radio" name="category" id="Storytelling" value="Storytelling">
+                <label for="Storytelling">Storytelling</label>
+                
+                <input type="radio" name="category" id="Social Justice Reporting" value="Social Justice Reporting">
+                <label for="Social Justice Reporting">Social Justice Reporting</label>
+                
+                <input type="radio" name="category" id="Sports Reporting" value="Sports Reporting">
+                <label for="Sports Reporting">Sports Reporting</label>
+                
+                <input type="radio" name="category" id="Opinion/Commentary" value="Opinion/Commentary">
+                <label for="Opinion/Commentary">Opinion/Commentary</label>
+                
+                <input type="radio" name="category" id="Collaboration" value="Collaboration">
+                <label for="Collaboration">Collaboration</label>
+                
+                <input type="radio" name="category" id="Digital Drivers" value="Digital Drivers">
+                <label for="Digital Drivers">Digital Drivers</label>
+                
+                <input type="radio" name="category" id="Reaching Readers" value="Reaching Readers">
+                <label for="Reaching Readers">Reaching Readers</label>
+                
+                <input type="radio" name="category" id="Diversity Achievement" value="Diversity Achievement">
+                <label for="Diversity Achievement">Diversity Achievement</label>
+                
+                <input type="radio" name="category" id="Audience Engagement and Listening" value="Audience Engagement and Listening">
+                <label for="Audience Engagement and Listening">Audience Engagement and Listening</label>
+                
+                <input type="radio" name="category" id="Photography" value="Photography">
+                <label for="Photography">Photography</label>
+                
+                <input type="radio" name="category" id="Video" value="Video">
+                <label for="Video">Video</label>
+                
+                <input type="radio" name="category" id="Presentation/Design" value="Presentation/Design">
+                <label for="Presentation/Design">Presentation/Design</label>
+                
+                <input type="radio" name="category" id="Graphics/Illustrations" value="Graphics/Illustrations">
+                <label for="Graphics/Illustrations">Graphics/Illustrations</label>
+                
+                <input type="radio" name="category" id="Innovation: Design" value="Innovation: Design">
+                <label for="Innovation: Design">Innovation: Design</label>
+                
+                <input type="radio" name="category" id="Innovation: Tech" value="Innovation: Tech">
+                <label for="Innovation: Tech">Innovation: Tech</label>
+                
+                <input type="radio" name="category" id="Editor of the Year" value="Editor of the Year">
+                <label for="Editor of the Year">Editor of the Year</label>
+                
+                <input type="radio" name="category" id="Individual Achievers" value="Individual Achievers">
+                <label for="Individual Achievers">Individual Achievers</label>
+            </form>
+
+            
+
+        </div>
+        <button id="toggle-filters">Filters</button>
+
+        <div id="entries">
+            <h3 data-division="I">Division I</h3>
+            <div id="entries-division-I" class="entries-hold" data-division="I"></div>
+            <h3 data-division="II">Division II</h3>
+            <div id="entries-division-II" class="entries-hold" data-division="II"></div>
+            <h3 data-division="III">Division III</h3>
+            <div id="entries-division-III" class="entries-hold" data-division="III"></div>
+            <h3 data-division="IV">Division IV</h3>
+            <div id="entries-division-IV" class="entries-hold" data-division="IV"></div>
+        </div>
+   
+
+        <div id="add-entry">
+            <div id="open-entry">
+                <button id="toggle-entry"><div id="add-icon">+</div>Add Entry</button>
+            </div>
+            <iframe src="https://ghminternaldev.wpengine.com/wp-content/plugins/ghm-admin/bog2021-final4/" style="display: none;"></iframe>
+        </div>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+                https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script> 
+        <script type="text/javascript" src="firebase.js"></script>
+       
+    </body>
+</html>
+
+
