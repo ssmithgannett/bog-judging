@@ -1,0 +1,215 @@
+body {
+    background-color: #F4FAFF;
+    margin: 0;
+    font-family: 'Unify Sans', sans-serif;  
+}
+
+body.regional, body.internal {
+    --adv-fin-label: 'Advance';
+}
+
+body.external {
+    --adv-fin-label: 'Finalist';
+}
+
+.internal .final-comments, .regional .final-comments, .div-hide, .cat-hide, .fin-hide, .remove-item, .winner-selectors, .winner-comments, button:disabled, .entry-body, .internal #add-entry, .external #add-entry {
+    display: none;
+}
+
+.isFinalist .winner-selectors {
+    display: flex;
+}
+
+button {
+    font-size: .8rem;
+}
+
+#container {
+    width: 50vw;
+    margin: auto;
+}
+
+#filters {
+    background-color: #fff;
+    width: 50vw;
+    margin: auto;
+    height: auto;
+    height: 0px;
+    transition-duration: .3s;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    border: 2px solid #009bff;
+    border-top: 0;
+    padding: 0% 5%;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    margin-top: -2px;
+    position: fixed;
+    left: 20%;
+    z-index: 5;
+    box-shadow: 2px 4px 4px rgba(0,0,0,0);
+}
+
+#categories {
+    padding-bottom: 25px;
+}
+
+#filters form {
+  display: none;
+}
+
+button#toggle-filters {
+    border: 0;
+    background-color: #fff;
+    padding: 5px 20px 7px 20px;
+    left: 25%;
+    position: relative;
+    margin-top: -2px;
+    border: 2px solid #009bff;
+    border-top: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: fixed;
+    transition-duration: .3s;
+    z-index: 5;
+    top: 2px;
+    box-shadow: 2px 4px 4px rgba(0,0,0,0.3);
+}
+
+.finalist-selectors {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.winner .finalist-selectors {
+    display: none;
+}
+
+.finalist-selectors::before {
+    background-color: springgreen;
+    border-radius: 10px;
+    content: var(--adv-fin-label);
+    position: relative;
+    padding: 1%;
+    margin-right: 10px;
+    opacity: 0;
+    transition-duration: 0.3s;
+    color: #fff;
+}
+
+.isFinalist .finalist-selectors::before {
+    opacity: 1;
+}
+
+.winner-selectors {
+    /*display: flex;*/
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+   /* height: 20px;*/
+}
+
+.winner-selectors::before {
+    background-color: gold;
+    border-radius: 10px;
+    content: 'Winner';
+    position: relative;
+    padding: 1%;
+    margin-right: 10px;
+    opacity: 0;
+    transition-duration: 0.3s;
+    color: #fff;
+}
+
+.winner .winner-selectors::before {
+    opacity: 1;
+}
+
+#entries {
+    margin-bottom: 100px;
+}
+
+#entries h3 {
+    position: sticky;
+    top: 0px;
+    padding: 50px 5% 25px 5%;
+    width: 50vw;
+    background: #F4FAFF;
+    z-index: 4;
+    margin: auto;
+}
+
+.entry {
+    background-color: #fff;
+    margin: 5px auto 0 auto;
+    padding: 2% 5%;
+    width: 50vw;
+    margin-top: 30px;
+    border-radius: 20px;
+}
+
+.internal .winner-selectors, .regional .winner-selectors {
+    display: none;
+}
+
+.winner .winner-comments {
+    display: block;
+}
+
+#add-entry {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #F4FAFF;
+    height: 50px;
+    border-top: 3px solid #404040;
+    padding-top: 10px;
+    transition-duration: .7s;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    z-index: 5;
+}
+
+#open-entry {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#toggle-entry {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    color: #009bff;
+    background: transparent;
+    border: 0;
+    margin-left: 25px;
+}
+
+#add-icon {
+    background-color: transparent;
+    border: 2px solid #009bff;
+    width: 15px;
+    height: 15px;
+    border-radius: 10px;
+}
+
+#add-icon.rtate {
+    transform: rotate(45deg);
+}
+
+#add-entry iframe {
+    border: 0px;
+    background-color: #fff;
+    width: 70%;
+    margin: auto;
+    border-radius: 25px;
+    height: 100%;
+}
