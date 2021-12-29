@@ -56,7 +56,28 @@ function getUrlVars() {
     return vars;
 };
 const encodeUserType = getUrlVars()['user'];
+const encodeCatType = getUrlVars()['category']
 const userType = decodeURI(encodeUserType);
+const urlCatType = decodeURI(encodeCatType).toUpperCase()
+
+const judgeCats = () => {
+    $.getJSON('judging-desc.json', function(data) {
+        for (let i = 0; i < data.length; i++) {
+            if (urlCatType == data[i].Category) {
+                $('#category-description').html(`
+                <strong>${data[i].Category}: </strong>${data[i].Description}
+                `)
+                if(data[i].division == 'y') {
+                    $('#yes-divisions').show()
+                }
+                else {
+                    $('#no-divisions').show()
+                }
+            }
+        }
+    })
+}
+
 if (userType == 'regional') {
     removeItems = [
         '117420777', '116893929', '117386486', '117386488', '117386483',
@@ -87,7 +108,10 @@ if (userType == 'external') {
     ]
     adv_fin = 'Mark as finalist'
     no_adv_fin = 'Remove from finalists'
+    $('#external-info').show()
+    judgeCats()
 }
+
 $('body').addClass(userType)
 
 //Firebase database snapchot to array
@@ -129,18 +153,10 @@ const getSubs = () => {
 }
 
 // pull json for fields ids and names
-$.ajax({
-    url : 'fields.json',
-    type : 'GET',
-    success : function(data2) {
-        pullFields(data2)
-        getSubs()
-    },
-    error : function(request,error)
-    {
-        console.log("Request: "+JSON.stringify(request));
-    }
-});// end ajax"
+$.getJSON('fields.json', function(data2) {
+    pullFields(data2)
+    getSubs()
+})
 
 // submissions data to front-end modules
 const pullSubs = (data) => {
@@ -162,16 +178,21 @@ const pullSubs = (data) => {
             disableYes = 'disabled'
             disableNo = ''
         }
-        if(submission.is_winner == true) {
+        if(submission.is_winner == true && userType == 'external') {
             isWinner = 'winner'
             winDisableYes = 'disabled'
             winDisableNo = ''
+
         }
         if (selDivision !== submission.data[116893929].value && selDivision.length) {
             hideDiv = 'div-hide'
         }
         if (selCat !== submission.data[116918588].value && selCat.length) {
             hideCat = 'cat-hide'
+        }
+        const upperCat = submission.data[116918588].value.toUpperCase()
+        if (userType == 'external' && urlCatType != upperCat) {
+            continue
         }
         // create DOM element to hold entry info
         $(`#entries #entries-division-${submission.data[116893929].value}`).append(`
@@ -182,24 +203,39 @@ const pullSubs = (data) => {
                 data-division="${submission.data[116893929].value}" 
                 data-isfinalist="${isFinalist}"
             >
-                <div class="finalist-selectors">
-                    <button ${disableYes} class="finalist-yes" onClick="pushJson(${i}, ${submission.id})">${adv_fin}</button>
-                    <button ${disableNo} class="finalist-no" onClick="pullJson(${i}, ${submission.id})">${no_adv_fin}</button>
-                </div>
-                <div class="winner-selectors">
-                    <button ${winDisableYes} class="winner-yes" onClick="markWinner(${i}, ${submission.id})">Mark as winner</button>
-                    <button ${winDisableNo} class="winner-no" onClick="unmarkWinner(${i}, ${submission.id})">Unmark as winner</button>
-                </div>
-                <div class="winner-comments comments-${submission.id}">
-                    <p>Write your comments about the winner below:</p>
-                    <textarea id="comments-${submission.id}" rows="6">${submission.winner_comments}</textarea>
-                    <button onClick="commentsUpdate(${i}, ${submission.id})">Submit</button>
-                </div>
-                
+               
                 <div class="entry-header"></div>
+
                 <button onClick="showMore(${submission.id})" class="read-more">Read More</button>
                 <button class="read-less" onClick="showLess(${submission.id})" disabled>Read less</button>
-                <div class="entry-body"></div>
+
+                <div class="entry-body">
+                    <div class="entry-meta"></div>
+                    <div class="entry-links"></div>
+                </div>
+
+                <hr />
+
+                <div class="finalist-selectors">
+                    <button 
+                        ${disableYes} class="finalist-yes" onClick="pushJson(${i}, ${submission.id})"><div class="yes-adv">&#9989;</div>${adv_fin}</button>
+                    <button ${disableNo} class="finalist-no" onClick="pullJson(${i}, ${submission.id})"><div class="no-adv">&#10060;</div>${no_adv_fin}</button>
+                </div><!-- .finalist-selectors -->
+                
+                <div class="winner-selectors">
+                    <button ${winDisableYes} class="winner-yes" onClick="markWinner(${i}, ${submission.id})"><div class="trophy">&#127942;</div>Mark as winner</button>
+                    <button ${winDisableNo} class="winner-no" onClick="unmarkWinner(${i}, ${submission.id})"><div class="no-adv">&#10060;</div>Unmark as winner</button>
+                </div><!-- .winner-selectors -->
+
+                <div class="winner-comments comments-${submission.id}">
+                    <p>Write your comments about the winner below:</p>
+                    <textarea class="enter-comments" id="comments-${submission.id}" rows="6">${submission.winner_comments}</textarea>
+                    <div class="submission-ui">
+                        <button class="submit-comments" onClick="commentsUpdate(${i}, ${submission.id})">Submit</button>
+                        <div style="display: none;" class="success">Comments recorded</div>
+                    </div>
+                </div><!-- .winner-comments -->
+                
             </div>
           `)
           // loop titles JSON and match entry data with title
@@ -214,12 +250,12 @@ const pullSubs = (data) => {
                 }
                 // manipulate DOM element with entry data
                 else if (label == 'Your email' || label == 'First Contributor Email' || label == 'Second Contributor Email' || label == 'Third Contributor Email ' || label == 'Fourth Contributor Email' || label == 'Fifth Contributor Email') {
-                    $(`#entry-${submission.id} .entry-body`).append(`
+                    $(`#entry-${submission.id} .entry-body .entry-meta`).append(`
                           <p><strong>${label}:</strong> <a href="mailto:${value}">${value}</a></p>
                     `)
                 }
                 else if (label == "First Contributor Headshot" || label == "Second Contributor Headshot " || label == "Third Contributor Headshot" || label == "Fourth Contributor Headshot" || label == "Fifth Contributor Headshot") {
-                    $(`#entry-${submission.id} .entry-body`).append(`
+                    $(`#entry-${submission.id} .entry-body .entry-meta`).append(`
                         <a target="_blank" href="${value}">View Headshot</a>
                     `)
                 }
@@ -229,27 +265,32 @@ const pullSubs = (data) => {
                 `)
                 }
                 else if (label == 'Enter at least one URL associated with the work' ) {
-                    $(`#entry-${submission.id} .entry-body`).append(`
-                        <a href="${value}" target="_blank">Entry Link</a>
+                    $(`#entry-${submission.id} .entry-body .entry-links`).append(`
+                        <a class="main-link" href="${value}" target="_blank">View entry</a>
                     `)
                 }
                 else if (label == 'Additional URL 1' || label == 'Additional URL 2' || label == 'Additional URL 3' || label == 'Additional URL 4') {
-                    $(`#entry-${submission.id} .entry-body`).append(`
-                    <a href="${value}" target="_blank">Additional Link</a>
+                    $(`#entry-${submission.id} .entry-body .entry-links`).append(`
+                    <a class="extra-link" href="${value}" target="_blank">Additional Link</a>
                 `)
                 }
                 else if (label == 'Additional material to upload 1' || label == 'Additional material to upload 2' || label == 'Additional material to upload 3' || label == 'Additional material to upload 4' || label == 'Additional material to upload 5') {
-                    $(`#entry-${submission.id} .entry-body`).append(`
-                    <a href="${value}" target="_blank">Additional Material</a>
+                    $(`#entry-${submission.id} .entry-body .entry-links`).append(`
+                    <a class="extra-link" href="${value}" target="_blank">Additional Material</a>
+                `)
+                }
+                else if (label == 'Supplemental URL 1' || label == 'Supplemental URL 2' || label == 'Supplemental URL 3' || label == 'Supplemental URL 4' || label == 'Supplemental URL 5') {
+                    $(`#entry-${submission.id} .entry-body .entry-links`).append(`
+                    <a class="extra-link" href="${value}" target="_blank">Supplemental URL</a>
                 `)
                 }
                 else if (label == 'Your name') {
-                    $(`#entry-${submission.id} .entry-body`).append(`
+                    $(`#entry-${submission.id} .entry-body .entry-meta`).append(`
                     <p><strong>Submitted by:</strong> ${value}</p>
                 `)
                 }
                 else {
-                    $(`#entry-${submission.id} .entry-body`).append(`
+                    $(`#entry-${submission.id} .entry-body .entry-meta`).append(`
                         <p><strong>${label}:</strong> ${value}</p>
                     `)
                 }
@@ -347,6 +388,10 @@ const commentsUpdate = (e, id) => {
     firebase.database().ref(`submissions/${e}`).update({
         winner_comments: comments
     })
+    $(`.comments-${id} .success`).fadeIn(300)
+    setTimeout(function() {
+        $(`.comments-${id} .success`).fadeOut(300)
+    }, 2500)
 }
 
 // finalist filter

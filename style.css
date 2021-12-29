@@ -12,7 +12,11 @@ body.external {
     --adv-fin-label: 'Finalist';
 }
 
-.internal .final-comments, .regional .final-comments, .div-hide, .cat-hide, .fin-hide, .remove-item, .winner-selectors, .winner-comments, button:disabled, .entry-body, .internal #add-entry, .external #add-entry {
+a {
+    color: #009bff;
+}
+
+.internal .final-comments, .regional .final-comments, .div-hide, .cat-hide, .fin-hide, .remove-item, .winner-selectors, .winner-comments, button:disabled, .entry-body, .internal #add-entry, .external #add-entry, .internal .winner .winner-comments, .regional .winner .winner-comments {
     display: none;
 }
 
@@ -22,6 +26,7 @@ body.external {
 
 button {
     font-size: .8rem;
+    cursor: pointer;
 }
 
 #container {
@@ -60,6 +65,10 @@ button {
   display: none;
 }
 
+.external #filters, .external button#toggle-filters {
+    display: none;
+}
+
 button#toggle-filters {
     border: 0;
     background-color: #fff;
@@ -82,7 +91,36 @@ button#toggle-filters {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.finalist-selectors button, .winner-selectors button {
+    border: 0px;
+    background: transparent;
+    color: #009bff;
+    padding-left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     flex-direction: row;
+}
+
+.finalist-selectors button:disabled, .winner-selectors button:disabled {
+    display: none;
+}
+
+.no-adv, .yes-adv, .trophy {
+    margin-right: 5px;
+    font-size: 1rem;
+    margin-top: -3px;
+
+}
+
+.read-more, .read-less {
+    border: 0px;
+    background: transparent;
+    color: #009bff;
+    padding-left: 0;
 }
 
 .winner .finalist-selectors {
@@ -90,15 +128,15 @@ button#toggle-filters {
 }
 
 .finalist-selectors::before {
-    background-color: springgreen;
+    background-color: #00df00;
     border-radius: 10px;
     content: var(--adv-fin-label);
     position: relative;
     padding: 1%;
-    margin-right: 10px;
     opacity: 0;
     transition-duration: 0.3s;
     color: #fff;
+    font-size: .8rem;
 }
 
 .isFinalist .finalist-selectors::before {
@@ -109,7 +147,7 @@ button#toggle-filters {
     /*display: flex;*/
     align-items: center;
     justify-content: space-between;
-    flex-direction: row;
+    flex-direction: row-reverse;
    /* height: 20px;*/
 }
 
@@ -119,7 +157,6 @@ button#toggle-filters {
     content: 'Winner';
     position: relative;
     padding: 1%;
-    margin-right: 10px;
     opacity: 0;
     transition-duration: 0.3s;
     color: #fff;
@@ -158,6 +195,36 @@ button#toggle-filters {
 
 .winner .winner-comments {
     display: block;
+}
+
+.enter-comments {
+    width: 100%;
+    font-family: 'Unify Sans', sans-serif;
+    padding-left: 1%;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+.submission-ui {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.submit-comments {
+    border: 0;
+    background: #009bff;
+    color: #fff;
+    padding: 5px 25px;
+    border-radius: 25px;
+   
+}
+
+.success {
+    font-size: .8rem;
+    padding: 5px 25px;
+    color: #00aa00;
 }
 
 #add-entry {
@@ -212,4 +279,38 @@ button#toggle-filters {
     margin: auto;
     border-radius: 25px;
     height: 100%;
+}
+
+#external-info {
+    padding: 2% 5%;
+    width: 50vw;
+    margin: auto;
+}
+
+#external-info img {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.entry-links {
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+.main-link, .extra-link {
+    border-radius: 25px;
+    text-decoration: none;
+    padding: 5px 20px;
+    font-size: .8rem;
+}
+
+.main-link {
+    color: #fff;
+    background: #009bff;
+    border: 2px solid #009bff;
+
+}
+
+.extra-link {
+    border: 2px solid #404040;
 }

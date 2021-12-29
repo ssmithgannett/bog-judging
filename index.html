@@ -9,7 +9,8 @@
    
 </head>
     <body>
-        
+      
+
         <div id="filters">
 
             <form id="finalist">
@@ -17,9 +18,9 @@
                 <input type="radio" name="finalist-filter" id="View All" value="View All" checked>
                 <label for="View All">View All</label>
                 <input type="radio" name="finalist-filter" id="isFinalist" value="isFinalist">
-                <label for="isFinalist">Finalists</label>
+                <label for="isFinalist">Advance</label>
                 <input type="radio" name="finalist-filter" id="nonFinalist" value="nonFinalist">
-                <label for="nonFinalist">Non-finalists</label>
+                <label for="nonFinalist">Don't Advacne</label>
             </form>
 
             <form id="divisions">
@@ -111,8 +112,25 @@
 
             
 
-        </div>
+        </div><!-- filters -->
         <button id="toggle-filters">Filters</button>
+
+
+        <header style="display: none;" id="external-info">
+
+            <img src="https://ghminternaldev.wpengine.com/wp-content/plugins/ghm-admin/bog2021-final4/Best_of_Gannett-01.png" alt="">
+
+            <p id="category-description"></p>
+
+            <p style="display:none;" id="no-divisions">Choose 5 finalists and 1 winner for this category.</p>
+
+            <p style="display:none;" id="yes-divisions">Choose 5 finalists and 1 winner for each division.</p>
+
+            <p>Remarks: Only write for the winner. If you are working with another judge, the remarks should reflect what you both think. Or you can each write remarks and put your name on your own. The remarks will be used during our awards ceremony and possibly in other materials.</p>
+
+            <p>Questions? Contact <a href="mailto:jhodges@gannett.com">Jean Hodges</a> or <a href="mailto:mzadrima@gannett.com">Melanie Zadrima</a>.</p>
+
+        </header>
 
         <div id="entries">
             <h3 data-division="I">Division I</h3>
